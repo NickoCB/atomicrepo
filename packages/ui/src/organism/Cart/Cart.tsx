@@ -4,12 +4,13 @@ import { CartEntryObject } from 'app-types';
 import { Card, Divider, Flex, Text } from '../../atom/Chakra'
 import { CartStyled } from "./Cart.style";
 import { CartProps } from './Cart.types';
+import { Button } from '../../atom/Button';
 
 
 
 
 
-const Cart = ({ selectedItems, items, toppings, total, sizes, ...props }:CartProps) => {
+const Cart = ({ selectedItems, items, toppings, total, sizes, onReset, ...props }:CartProps) => {
   return (
     <CartStyled {...props}>
       <Flex direction="column" >
@@ -42,6 +43,8 @@ const Cart = ({ selectedItems, items, toppings, total, sizes, ...props }:CartPro
                 <Text margin="4"  fontWeight="bold">Total:</Text>
                 <Text margin="4" fontWeight="semibold">{`${total}PHP`}</Text>
         </Flex>
+        <Button onClick={()=>{}} text="Checkout" />
+        <Button onClick={onReset} text="Reset" />
       </Flex>
     </CartStyled>
   );

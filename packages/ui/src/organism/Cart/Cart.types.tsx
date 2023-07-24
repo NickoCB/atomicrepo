@@ -5,5 +5,6 @@ export type CartProps = {
   items: CartItemNormalized,
   toppings: ItemToppingsNormalized,
   sizes: ItemSizeNormalized,
-  total:number
+  total:number,
+  onReset:()=>void
 }

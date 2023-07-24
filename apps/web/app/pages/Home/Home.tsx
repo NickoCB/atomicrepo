@@ -15,26 +15,29 @@ const Home = () => {
 
     const [selectedItems, setSelectedItems] = useState<Array<CartEntryObject>>([]);
     const [total, setTotal] = useState(0);
+    const handleReset = () => {
+        setSelectedItems([]);
+    }
     const handleSubmit = (value: CheckoutItemObject) => {
         const index = selectedItems.findIndex((currentItem, index) => {
             return isEqual(currentItem.item, value)
         })
-       
+
         let newSelectedItem;
         if (index === -1) {
-            newSelectedItem=[...selectedItems, {
+            newSelectedItem = [...selectedItems, {
                 item: value,
                 count: 1
             }];
         } else {
             selectedItems[index].count++;
-            newSelectedItem=[...selectedItems];
+            newSelectedItem = [...selectedItems];
         }
         const newTotal = newSelectedItem.reduce((sum, value) => {
-            if(items?.byId[value.item.itemId]?.price)
+            if (items?.byId[value.item.itemId]?.price)
                 return sum + ((items?.byId[value.item.itemId].price || 0) * value.count)
             return sum
-        },0)
+        }, 0)
         setTotal(newTotal);
         setSelectedItems(newSelectedItem);
 
@@ -55,10 +58,11 @@ const Home = () => {
             />
             <Flex minW="100vh" maxH="100vw">
                 <CartMenu onClick={openModal} item={items} />
-                <Cart total={total} selectedItems={selectedItems} items={items} sizes={sizes} toppings={toppings} />
-                    
+                <Cart onReset={handleReset} total={total} selectedItems={selectedItems} items={items} sizes={sizes} toppings={toppings} />
+
             </Flex>
         </>
+
     );
 }
 

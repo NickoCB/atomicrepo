@@ -49,5 +49,3 @@ describe('CartItem', () => {
         expect(handleClick).toHaveBeenCalled()
     })
 })
-
-//write new test base on the snippet above

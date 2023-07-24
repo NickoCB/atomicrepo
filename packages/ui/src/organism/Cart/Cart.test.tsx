@@ -89,4 +89,23 @@ describe('Cart', () => {
         expect(screen.getByText('Total:')).toBeInTheDocument();
         expect(screen.getByText('0PHP')).toBeInTheDocument();
     });
+
+    it('should render checkout button', async () => {
+        await render(TestComponent);
+        expect(screen.getByText('Checkout')).toBeInTheDocument();
+    });
+
+    it('should render reset button', async () => {
+        await render(TestComponent);
+        expect(screen.getByText('Reset')).toBeInTheDocument();
+    });
+    it('should call reset function', async () => {
+        const handleReset = jest.fn();
+        await render(<Cart total={0} items={ITEMS} sizes={SIZES} toppings={TOPPINGS} selectedItems={SELECTED_ITEMS} onReset={handleReset} />);
+        await userEvent.click(screen.getByText('Reset'));
+        expect(handleReset).toHaveBeenCalled();
+    });
+    
+
+
 });
