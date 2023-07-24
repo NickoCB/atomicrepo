@@ -1,0 +1,5 @@
+{
+  "extends": "tsconfig/react-library.json",
+  "include": [".", "../app-types/src/util.types.tsx"],
+  "exclude": ["dist", "build", "node_modules","turbo","coverage"]
+}
